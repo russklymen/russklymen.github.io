@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ruslan Klymenko</title>
+<meta name="description" content="Ruslan Klymenko: hospitality software implementation and workflow automation, based in Dubai. Open to full-time roles.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+  html, body { margin: 0; }
+  [hidden] { display: none !important; }
+  img { max-width: 100%; }
+  /* Layout: one left-aligned reading column; every list uses the same 10.5rem label rail, stacking on phones */
+  :root {
+    --bg: #f7f4ef;
+    --surface: #ffffff;
+    --ink: #1d1f23;
+    --muted: #625d56;
+    --line: #e6e0d6;
+    --accent: #8a6532;
+    --accent-soft: #f3eadb;
+    --rule: #b08a4f;
+    --display: "Familjen Grotesk", "Helvetica Neue", Arial, sans-serif;
+    --body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1b1c1f; --surface: #25262a; --ink: #f2f2f3; --muted: #b3aea6;
+      --line: #36363a; --accent: #d9bf8f; --accent-soft: #352d22; --rule: #b08a4f;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #1b1c1f; --surface: #25262a; --ink: #f2f2f3; --muted: #b3aea6;
+    --line: #36363a; --accent: #d9bf8f; --accent-soft: #352d22; --rule: #b08a4f;
+    color-scheme: dark;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font: 400 1rem/1.6 var(--body);
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    max-width: 46rem;
+    margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: clamp(3rem, 9vw, 6rem) 3rem;
+    display: grid;
+    gap: clamp(3.5rem, 9vw, 5.5rem);
+  }
+  a { color: var(--accent); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  a:hover { text-decoration-thickness: 2px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  .eyebrow {
+    font: 500 0.75rem/1.2 var(--mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0;
+  }
+  h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
+  section { display: grid; gap: 1.25rem; }
+  section > h2.eyebrow { color: var(--accent); }
+
+  /* Hero */
+  header { display: grid; gap: 1.4rem; }
+  h1 { font-size: clamp(2.6rem, 7.5vw, 4rem); font-weight: 700; line-height: 1; letter-spacing: -0.02em; }
+  h1::after { content: ""; display: block; width: 3.5rem; height: 3px; margin-top: 1.1rem; background: var(--rule); border-radius: 2px; }
+  .pitch { font-size: clamp(1.15rem, 2.5vw, 1.35rem); line-height: 1.45; max-width: 38rem; margin: 0; text-wrap: balance; }
+  .pitch-sub { margin: -0.5rem 0 0; max-width: 38rem; color: var(--muted); font-size: 1.02rem; line-height: 1.55; text-wrap: balance; }
+  .nowrap { white-space: nowrap; }
+  p, li { hyphens: manual; }
+
+  /* Key figures */
+  .figures {
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin: 0.6rem 0 0; padding: 0; list-style: none;
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  }
+  .figures li { display: grid; gap: 0.4rem; align-content: start; padding: 1.2rem 1rem 1.2rem 0; }
+  .figures li + li { border-left: 1px solid var(--line); padding-left: 1rem; }
+  .figures b { color: var(--accent); font: 700 clamp(1.7rem, 4vw, 2.2rem)/1 var(--display); letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
+  .figures span { font: 400 0.75rem/1.35 var(--mono); color: var(--muted); text-wrap: balance; }
+
+  /* Shared rail list: label on the left, content on the right */
+  .rows { display: grid; margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+  .row {
+    display: grid; grid-template-columns: 10.5rem minmax(0, 1fr); gap: 0.4rem 1.5rem;
+    align-items: start; padding-block: 1.1rem; border-bottom: 1px solid var(--line);
+  }
+  .row-label { font: 600 0.98rem/1.35 var(--display); }
+  .row-label small { display: block; margin-top: 0.25rem; font: 400 0.72rem/1.3 var(--mono); letter-spacing: 0.04em; color: var(--muted); }
+  .row p { margin: 0; }
+  .row .mono { font: 400 0.85rem/1.6 var(--mono); }
+
+
+  .spec { display: flex; flex-wrap: wrap; gap: 0.4rem 0.5rem; margin: 0; padding: 0; list-style: none; font: 400 0.8rem/1.3 var(--mono); }
+  .spec li { border: 1px solid var(--line); background: var(--surface); padding: 0.35rem 0.6rem; border-radius: 3px; }
+  .spec li.key { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+  .status { justify-self: start; font: 500 0.72rem/1 var(--mono); letter-spacing: 0.04em; color: var(--accent); border: 1px solid currentColor; border-radius: 999px; padding: 0.3rem 0.55rem; white-space: nowrap; }
+
+  /* Flows: steps wrap as chips */
+  .flow {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 0.45rem;
+    margin: 0; padding: 0; list-style: none; min-width: 0;
+  }
+  .flow li { display: flex; align-items: center; gap: 0.45rem; font: 400 0.8rem/1.25 var(--mono); }
+  .flow li + li::before { content: "→"; color: var(--accent); }
+  .step { background: var(--surface); border: 1px solid var(--line); border-radius: 3px; padding: 0.3rem 0.5rem; }
+  .step.out { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+  .note { margin: 0; color: var(--muted); font-size: 0.92rem; max-width: 40rem; }
+
+  /* Experience */
+  .item {
+    display: grid; grid-template-columns: 10.5rem minmax(0, 1fr); gap: 0.4rem 1.5rem;
+    padding-block: 1.6rem; border-bottom: 1px solid var(--line);
+  }
+  .work { display: grid; border-top: 1px solid var(--line); }
+  .meta { font: 400 0.8rem/1.5 var(--mono); color: var(--muted); display: grid; gap: 0.3rem; align-content: start; }
+  .body { min-width: 0; display: grid; gap: 0.55rem; }
+  h3 { font-size: 1.3rem; font-weight: 600; line-height: 1.2; }
+  .role { color: var(--muted); margin: -0.25rem 0 0; font-size: 0.95rem; }
+  .body p { margin: 0; }
+  .body ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 0.35rem; }
+
+  /* Six months */
+  .plan-body { display: grid; gap: 0.5rem; min-width: 0; }
+  .plan-body ul { margin: 0; padding-left: 1.1rem; list-style: disc; display: grid; gap: 0.3rem; color: var(--muted); }
+  .when { font: 500 0.8rem/1.7 var(--mono); color: var(--accent); }
+
+  /* Contact */
+  .contact {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--rule);
+    border-radius: 4px;
+    padding: 1.6rem 1.5rem 1.7rem;
+    display: grid; gap: 1rem;
+  }
+  .contact h2 { font-size: 1.25rem; font-weight: 600; }
+  .contact p { margin: 0; max-width: 38rem; color: var(--muted); }
+  .contact .edu { display: grid; gap: 0.2rem; text-wrap: balance; }
+  .contact .edu strong { font-weight: 500; color: var(--ink); }
+  .contact .edu span { font: 400 0.82rem/1.4 var(--mono); }
+  .lines { display: grid; gap: 0.55rem; font: 400 0.95rem/1.4 var(--mono); }
+  .line { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.75rem; }
+  .line .label { color: var(--muted); width: 5.5rem; font-size: 0.8rem; }
+  .line .value { user-select: all; overflow-wrap: anywhere; min-width: 0; }
+  button.copy {
+    font: 500 0.75rem/1 var(--mono);
+    color: var(--accent); background: transparent;
+    border: 1px solid var(--accent); border-radius: 3px;
+    padding: 0.35rem 0.55rem; cursor: pointer;
+  }
+  button.copy:hover { background: var(--accent-soft); }
+  footer { color: var(--muted); font-size: 0.82rem; }
+
+  @media (max-width: 640px) {
+    .row, .item { grid-template-columns: minmax(0, 1fr); }
+    .figures { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .figures li:nth-child(3) { border-left: 0; padding-left: 0; }
+    .figures li:nth-child(n+3) { border-top: 1px solid var(--line); }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    a, button.copy { transition: background-color 120ms ease, text-decoration-thickness 120ms ease; }
+  }
+</style>
+
+<meta property="og:title" content="Ruslan Klymenko">
+<meta property="og:description" content="Hospitality software implementation and workflow automation, based in Dubai. Open to full-time roles.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://russberry8bit.github.io/">
+</head>
+<body>
+<main class="page">
+  <header>
+    <p class="eyebrow">Software implementation · Workflow automation</p>
+    <h1>Ruslan Klymenko</h1>
+    <p class="pitch">I take hospitality software live: from requirements and configuration to POS, CRM and payment integrations, staff training and <span class="nowrap">go-live</span>, across many venues and countries at once.</p>
+    <p class="pitch-sub">I also build the processes and <span class="nowrap">AI-assisted</span> workflows that make each <span class="nowrap">go-live</span> faster than the last.</p>
+    <ul class="figures" aria-label="Team results at TableCheck">
+      <li><b>218</b><span>venues taken live by my team</span></li>
+      <li><b>17</b><span>countries, 87 properties</span></li>
+      <li><b>21-28</b><span>days to go-live, from a median of 35</span></li>
+      <li><b>89%</b><span>healthy usage in a 2026 venue review</span></li>
+    </ul>
+    <ul class="spec" aria-label="Availability">
+      <li class="key">Open to full-time roles</li>
+      <li class="key">Implementation Lead · Technical Account Manager</li>
+      <li>Dubai, United Arab Emirates</li>
+      <li>UAE Driving Licence</li>
+      <li>English (fluent, IELTS Academic) · Ukrainian · Russian (native)</li>
+      <li>German (pre-intermediate) · Arabic · Japanese (beginner)</li>
+    </ul>
+  </header>
+
+  <section aria-labelledby="flow-title">
+    <h2 id="flow-title" class="eyebrow">Flows I build</h2>
+    <ul class="rows">
+      <li class="row">
+        <span class="row-label">Venue go-live<small>Delivered at TableCheck</small></span>
+        <ol class="flow"><li><span class="step">Requirements</span></li><li><span class="step">Configuration from a template</span></li><li><span class="step">Data migration and UAT</span></li><li><span class="step out">Go-live and sign-off</span></li></ol>
+      </li>
+      <li class="row">
+        <span class="row-label">Customer tickets<small>Ready to build</small></span>
+        <ol class="flow"><li><span class="step">New ticket from a venue</span></li><li><span class="step">AI sorts topic and urgency</span></li><li><span class="step">Routed to the right team</span></li><li><span class="step out">Alert before the deadline slips</span></li></ol>
+      </li>
+      <li class="row">
+        <span class="row-label">Churn<small>Ready to build</small></span>
+        <ol class="flow"><li><span class="step">Venue cancels or usage drops</span></li><li><span class="step">Venue history pulled</span></li><li><span class="step">Reasons analysed</span></li><li><span class="step out">Weekly brief to customer success</span></li></ol>
+      </li>
+      <li class="row">
+        <span class="row-label">New leads<small>Ready to build</small></span>
+        <ol class="flow"><li><span class="step">Enquiry from a venue group</span></li><li><span class="step">Enriched with Clay</span></li><li><span class="step">Qualified by AI</span></li><li><span class="step">Logged in the CRM</span></li><li><span class="step out">Owner alerted</span></li></ol>
+      </li>
+      <li class="row">
+        <span class="row-label">Zendesk technical support<small>Ready to build</small></span>
+        <ol class="flow"><li><span class="step">Technical issue logged in Zendesk</span></li><li><span class="step">AI tags system and urgency (POS, payments, integrations)</span></li><li><span class="step">Known fix suggested</span></li><li><span class="step">Escalated to engineering with full context</span></li><li><span class="step out">Venue updated until resolved</span></li></ol>
+      </li>
+    </ul>
+    <p class="note">I build these with Claude, n8n, Zapier and Clay on top of the tools the team already uses (CRM, help desk, spreadsheets), and documented so the team can change them without me.</p>
+  </section>
+
+  <section aria-labelledby="work-title">
+    <h2 id="work-title" class="eyebrow">What I have delivered</h2>
+    <div class="work">
+      <article class="item">
+        <div class="meta"><span class="status">Full-time</span><span>Mar 2022 - Oct 2026</span><span>Dubai</span></div>
+        <div class="body">
+          <h3>TableCheck</h3>
+          <p class="role">Project Lead, Onboarding &amp; Implementation (03/2024 - 10/2026), Technical &amp; Sales Consultant (03/2022 - 02/2024) · Reservation and guest-experience platform</p>
+          <ul>
+            <li>Led a five-person team that took 218 venues live for Rotana, Minor Hotels (Anantara), Hyatt, IHG and Hilton.</li>
+            <li>Cut kickoff to go-live from a median of 35 days to 21-28, with a new implementation SOP the team adopted as its standard.</li>
+            <li>Ran the Rotana rollout: 80 venues in 41 hotels across 7 countries, delivered in four waves.</li>
+            <li>Brought AI and automation into delivery: used AI tools to build structured training sessions that cut manual preparation, and introduced a structured method for client-specific configuration files that reduced setup work.</li>
+          </ul>
+        </div>
+      </article>
+      <article class="item">
+        <div class="meta"><span>Mar 2021 - Feb 2022</span><span>Dubai</span></div>
+        <div class="body">
+          <h3>2GIS</h3>
+          <p class="role">Key Account Manager · Digital maps and business directory</p>
+          <ul>
+            <li>Managed a portfolio of 80+ B2B and B2C client accounts across the GCC, focused on retention, renewals and commercial growth across advertising, listings and mapping products.</li>
+            <li>Built account plans around each client's business objectives, supporting onboarding and long-term adoption of 2GIS products.</li>
+            <li>Analysed client data, user behaviour and campaign results to find upsell opportunities and improve campaign performance and return on investment.</li>
+            <li>Led contract negotiations and worked with sales, product and support teams to resolve service issues quickly.</li>
+          </ul>
+        </div>
+      </article>
+      <article class="item">
+        <div class="meta"><span>Nov 2017 - Feb 2021</span><span>Remote · Freelance</span></div>
+        <div class="body">
+          <h3>CODA</h3>
+          <p class="role">Business Development Manager · Document and workflow automation</p>
+          <ul>
+            <li>Identified and engaged enterprise and mid-market prospects, presenting the platform's document, spreadsheet and workflow-automation capabilities.</li>
+            <li>Onboarded 185+ clients, designing and running technical onboarding and coordinating implementation, training and ongoing support.</li>
+            <li>Analysed product usage and client feedback to shape solution recommendations, and shared insights with the product and engineering teams.</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="tools-title">
+    <h2 id="tools-title" class="eyebrow">Toolkit</h2>
+    <ul class="rows">
+      <li class="row"><span class="row-label">CRM &amp; sales</span><p class="mono">HubSpot · Salesforce · Kintone</p></li>
+      <li class="row"><span class="row-label">Support &amp; collaboration</span><p class="mono">Zendesk · Dropbox · Notion</p></li>
+      <li class="row"><span class="row-label">Product &amp; delivery</span><p class="mono">Jira · Postman · GitHub · Miro · Figma</p></li>
+      <li class="row"><span class="row-label">Lead generation</span><p class="mono">Apollo · Icypeas · Surfe · Dropcontact</p></li>
+      <li class="row"><span class="row-label">Enrichment &amp; automation</span><p class="mono">Clay · Zapier · n8n</p></li>
+      <li class="row"><span class="row-label">AI</span><p class="mono">Claude · MCP · LangChain</p></li>
+      <li class="row"><span class="row-label">Hospitality systems</span><p class="mono">Oracle Micros Simphony · Shiji Infrasys · Agilysys · DailyPoint · Stripe</p></li>
+    </ul>
+    <p class="note">AI certifications from Anthropic, LangChain, Harvard, Stanford and MIT.</p>
+  </section>
+
+  <section aria-labelledby="plan-title">
+    <h2 id="plan-title" class="eyebrow">My first six months with your team</h2>
+    <ol class="rows">
+      <li class="row"><span class="when">Weeks 1-2</span><p>Learn the product, sit with sales, support and engineering, and review how clients are onboarded today, where go-lives slow down and which manual steps are worth automating.</p></li>
+      <li class="row"><span class="when">Months 1-3</span><p>Take the first clients live with a clear plan for each project, from requirements to sign-off, with timelines tracked per venue and automated status updates for the client.</p></li>
+      <li class="row"><span class="when">Months 3-6</span><p>Standardise what works (SOP, configuration templates, training), automate the repetitive steps with simple AI-assisted workflows, and run regular adoption reviews, so live accounts keep getting value after go-live.</p></li>
+    </ol>
+  </section>
+
+  <section class="contact" aria-labelledby="contact-title">
+    <h2 id="contact-title">Get in touch</h2>
+    <p class="edu"><strong>Bachelor's degree, Automation and Computer-Integrated Technologies</strong><span>240 ECTS · Kyiv, 2015 · Attested for use in the UAE</span></p>
+    <div class="lines">
+      <div class="line"><span class="label">Email</span><span class="value" id="email">ruslanklymenko888@gmail.com</span><button class="copy" type="button" id="copy-email" data-target="email">Copy</button></div>
+      <div class="line"><span class="label">LinkedIn</span><a class="value" href="https://www.linkedin.com/in/russ8bit/">linkedin.com/in/russ8bit</a></div>
+    </div>
+  </section>
+
+  <footer>Ruslan Klymenko · 2026</footer>
+</main>
+
+<script>
+  document.querySelectorAll("button.copy").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var el = document.getElementById(btn.dataset.target);
+      var text = el.textContent.trim();
+      var done = function () { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = "Copy"; }, 1600); };
+      var fallback = function () {
+        var r = document.createRange(); r.selectNodeContents(el);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        btn.textContent = "Selected";
+        setTimeout(function () { btn.textContent = "Copy"; }, 1600);
+      };
+      try {
+        navigator.clipboard.writeText(text).then(done, fallback);
+      } catch (e) { fallback(); }
+    });
+  });
+</script>
+</body>
+</html>
