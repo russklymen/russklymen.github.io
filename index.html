@@ -187,6 +187,10 @@
     .line { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.25rem 0.6rem; }
     .line .label { grid-column: 1 / -1; width: auto; font-size: 0.72rem; }
     .line a.value { grid-column: 1 / -1; }
+    #email { white-space: nowrap; }
+  }
+  @media (max-width: 360px) {
+    .lines { font-size: 0.8rem; }
   }
   @media (prefers-reduced-motion: no-preference) {
     a, button.copy { transition: background-color 120ms ease, text-decoration-thickness 120ms ease; }
