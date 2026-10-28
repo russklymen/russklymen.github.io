@@ -167,6 +167,26 @@
     .figures { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .figures li:nth-child(3) { border-left: 0; padding-left: 0; }
     .figures li:nth-child(n+3) { border-top: 1px solid var(--line); }
+    .eyebrow { letter-spacing: 0.06em; }
+    header > .eyebrow { font-size: 0.68rem; }
+    /* Chips fill each row evenly instead of leaving ragged gaps */
+    .spec li { flex: 1 1 auto; text-align: left; }
+    /* Flows become a vertical stepper: every chip starts on the same left edge */
+    .flow { flex-direction: column; align-items: stretch; gap: 0.35rem; }
+    .flow li { display: grid; grid-template-columns: 1rem minmax(0, 1fr); gap: 0.4rem; align-items: center; }
+    .flow li::before, .flow li + li::before { content: ""; }
+    .flow li + li::before { content: "↓"; text-align: center; }
+    .step { justify-self: start; max-width: 100%; }
+    .row-label small { margin-top: 0.15rem; }
+    /* Experience meta on one line above the role */
+    .meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem 0.75rem; }
+    .item { padding-block: 1.4rem; }
+    /* Contact card: label above, value and Copy on one line */
+    .contact { padding: 1.3rem 1.15rem 1.4rem; }
+    .lines { font-size: 0.86rem; gap: 0.8rem; }
+    .line { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.25rem 0.6rem; }
+    .line .label { grid-column: 1 / -1; width: auto; font-size: 0.72rem; }
+    .line a.value { grid-column: 1 / -1; }
   }
   @media (prefers-reduced-motion: no-preference) {
     a, button.copy { transition: background-color 120ms ease, text-decoration-thickness 120ms ease; }
