@@ -87,7 +87,8 @@
   .figures li { display: grid; gap: 0.4rem; align-content: start; padding: 1.2rem 1rem 1.2rem 0; }
   .figures li + li { border-left: 1px solid var(--line); padding-left: 1rem; }
   .figures b { color: var(--accent); font: 700 clamp(1.7rem, 4vw, 2.2rem)/1 var(--display); letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
-  .figures span { font: 400 0.75rem/1.35 var(--mono); color: var(--muted); text-wrap: balance; }
+  .figures span { font: 400 0.72rem/1.4 var(--mono); color: var(--muted); }
+  .figures .chunk { display: inline-block; white-space: nowrap; }
 
   /* Shared rail list: label on the left, content on the right */
   .rows { display: grid; margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
@@ -216,18 +217,18 @@
     <p class="pitch">I take hospitality software live: from requirements and configuration to POS, CRM and payment integrations, staff training and <span class="nowrap">go-live</span>, across many venues and countries at once.</p>
     <p class="pitch-sub">I also build the processes and <span class="nowrap">AI-assisted</span> workflows that make each <span class="nowrap">go-live</span> faster than the last.</p>
     <ul class="figures" aria-label="Team results at TableCheck">
-      <li><b>138</b><span>venues in one group-wide implementation</span></li>
-      <li><b>17</b><span>countries, 45 properties</span></li>
-      <li><b>18-21</b><span>days to go-live, from a median of 28-32</span></li>
-      <li><b>94%</b><span>healthy usage across venues</span></li>
+      <li><b>138</b><span><span class="chunk">venues in one</span> <span class="chunk">group-wide</span> <span class="chunk">implementation</span></span></li>
+      <li><b>17</b><span><span class="chunk">countries,</span> <span class="chunk">45 properties</span></span></li>
+      <li><b>18-21</b><span><span class="chunk">days to go-live,</span> <span class="chunk">from a median</span> <span class="chunk">of 28-32</span></span></li>
+      <li><b>94%</b><span><span class="chunk">healthy usage</span> <span class="chunk">across venues</span></span></li>
     </ul>
     <ul class="spec" aria-label="Availability">
       <li class="key">Open to full-time roles</li>
-      <li class="key">Implementation Lead · Technical Account Manager</li>
+      <li class="key">Implementation Lead · <span class="nowrap">Technical Account Manager</span></li>
       <li>Dubai, United Arab Emirates</li>
       <li>UAE Driving Licence</li>
-      <li>English (fluent, IELTS Academic) · Ukrainian · Russian (native)</li>
-      <li>German (pre-intermediate) · Arabic · Japanese (beginner)</li>
+      <li><span class="nowrap">English (fluent, IELTS Academic)</span> · <span class="nowrap">Ukrainian · Russian (native)</span></li>
+      <li><span class="nowrap">German (pre-intermediate)</span> · <span class="nowrap">Arabic · Japanese (beginner)</span></li>
     </ul>
   </header>
 
